@@ -10,11 +10,9 @@ pipeline {
     stages {
         stage("AWS Demo") {
             steps {
-                {
                     sh "packer init aws-ami-v1.pkr.hcl"
                     sh "packer build aws-ami-v1.pkr.hcl"
                 }
             }
         }
     }
-}
