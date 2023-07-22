@@ -4,6 +4,7 @@ pipeline {
       environment { 
          
            ENV_URL = "jenkins.global.com"
+           SSH_CRED = credentials("SSH_CRED")
        }
 
     stages {
@@ -12,6 +13,8 @@ pipeline {
                  echo " This is global value of ${ENV_URL} "
                  echo "I am Stage One Step"                    
                  echo " I am in step 2"
+                 echo SSH_CRED
+                 echo "ABOVE IS credential values"
                   } 
         }  
         
