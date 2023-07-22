@@ -1,9 +1,14 @@
 pipeline {
     agent any
 
+    environment { 
+         URL="jenkins.global"
+    }
+
     stages {
         stage("AWS Demo") {
-            steps {
+            steps { 
+                 echo " This is global value of ${URL} "
                  echo "I am Stage One Step"                    
                  echo " I am in step 2"
                   } 
@@ -11,8 +16,11 @@ pipeline {
         
        stage("stage 2") { 
              steps { 
+        
               echo "I am in stage 2"
-              sh ''' env  '''
+              sh ''' echo "this is local value of ${URL}" 
+
+                    env  '''
            } 
          }             
 
