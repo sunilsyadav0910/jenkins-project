@@ -16,7 +16,11 @@ pipeline {
         }  
         
        stage("stage 2") { 
-             steps { 
+             
+          environment { 
+             ENV_URL = "jenkins.stage2.com"
+           }
+          steps { 
         
               echo "I am in stage 2"
               sh ''' echo "this is local value of ${ENV_URL}" 
