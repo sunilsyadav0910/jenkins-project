@@ -11,7 +11,7 @@ pipeline {
         
        stage("stage 2") {
               echo "I am in stage 2"
-              env 
+              echo env 
          }             
 
 
