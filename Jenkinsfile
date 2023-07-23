@@ -1,38 +1,19 @@
 pipeline {
-    agent any
-
-      environment { 
-         
-           ENV_URL = "jenkins.global.com"
-           SSH_CRED = credentials("SSH_CRED")
-       }
-
+    agent none
     stages {
-        stage("AWS Demo") {
-            steps { 
-                 echo " This is global value of ${ENV_URL} "
-                 echo "I am Stage One Step"                    
-                 echo " I am in step 2"
-                 echo SSH_CRED
-                 echo "ABOVE IS credential values"
-                  } 
-        }  
-        
-       stage("stage 2") { 
-             
-          environment { 
-             ENV_URL = "jenkins.stage2.com"
-           }
-          steps { 
-        
-              echo "I am in stage 2"
-              sh ''' echo "this is local value of ${ENV_URL}" 
-
-                    env  '''
-           } 
-         }             
-
-
+        stage('Example Build') {
+            agent { docker 'maven:3.9.3-eclipse-temurin-17' }
+            steps {
+                echo 'Hello, Maven'
+                sh 'mvn --version'
+            }
+        }
+        stage('Example Test') {
+            agent { docker 'openjdk:17-jre' }
+            steps {
+                echo 'Hello, JDK'
+                sh 'java -version'
+            }
+        }
     }
- }
-
+}
